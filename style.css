@@ -1,0 +1,62 @@
+*{
+    margin:0;
+    padding: 0;
+}
+.gameArea{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: lightgray;
+    justify-content: center;
+    align-items: center;
+
+}
+.keyboardArea{
+    display: flex;
+    width: 80rem;
+    height: 10rem;
+    border-radius: 1rem;
+    background-color: rgb(255, 106, 87);
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+
+.keyArea{
+    display: flex;
+    border-radius: 1rem;
+    height: 90%;
+    width: 8rem;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, 'Arial Narrow', Arial, sans-serif;
+    font-size: 5rem;
+    color: rgb(69, 69, 69); 
+}
+
+.aboutArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40rem;
+    height: 8rem;
+    border-radius: 1rem;
+    background-color: white;
+    font-size: 3rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 1rem;
+}
+.button{
+    height: 6rem;
+    width: 15rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: white;
+    display: none;
+    font-size: 3rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 1rem;
+    /*position: absolute;*/
+}
