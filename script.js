@@ -1,6 +1,7 @@
 let count = 0;
 let tries = 0;
 let storeKeyPress = [];
+let wrongKeyPress = [];
 let keyboardArea = document.querySelector(".keyboardArea")
 let keyAreas = [];
 let wordArray = ["pirat","hatt","mössorna","katten","ön"]
@@ -9,6 +10,18 @@ let randomWord = getRandomWord();
 let aboutArea = document.querySelector(".aboutArea")
 let buttonYes = document.querySelector(".buttonYes")
 let buttonNo = document.querySelector(".buttonNo")
+//Svg elements
+let hangmanFull = document.querySelector(".fullImage")
+let hangmanGround = document.querySelector("#ground")
+let hangmanScaffold = document.querySelector("#scaffold")
+let hangmanHead = document.querySelector("#head")
+let hangmanBody = document.querySelector("#body")
+let hangmanArms = document.querySelector("#arms")
+let hangmanLegs = document.querySelector("#legs")
+//Array med delar av hangman
+let hangmanArray = [hangmanGround, hangmanScaffold, hangmanHead, hangmanBody, hangmanArms, hangmanLegs]
+//gör elementen none men visa sen när man gissar fel
+
 
 
 //Functions
@@ -34,6 +47,11 @@ function createCardAreas(){
         keyboardArea.appendChild(keyArea);
         keyAreas.push(keyArea)
     }
+    //ta bort alla element av hangman
+    for (const part of hangmanArray) {
+        part.style.display = "none"
+        
+    }
 }
 function clearKeyAreas() {
     // Här kommer vi att skriva koden för att rensa keyAreas.
@@ -43,14 +61,18 @@ function clearKeyAreas() {
     });
     keyAreas = []
     storeKeyPress = []
+    wrongKeyPress = []
     count = 0;
     tries = 0;
     aboutArea.textContent = "Start!"
+    for (const part of hangmanArray) {
+        part.style.display = "none"
+        
+    }
 }
 
 //starta spelet när sidan laddas
 createCardAreas();
-
 //eventlistener för key
 document.addEventListener("keypress", (e) => {
 
@@ -69,7 +91,7 @@ document.addEventListener("keypress", (e) => {
                 count++;
                 matchFound = true;
 
-                aboutArea.textContent = `Den fanns! försök ${tries}/5`
+                aboutArea.textContent = `Den fanns! försök ${tries}/6`
                 console.log("counter:",count)
             }
         }
@@ -77,7 +99,10 @@ document.addEventListener("keypress", (e) => {
           // Om ingen matchning hittades, öka misses
         if (!matchFound) {
             tries++;
-            aboutArea.textContent = `Den finns inte! försök ${tries}/5`
+            //visa kroppsdel av hangedman
+            wrongKeyPress.push(e.key)
+            hangmanArray[tries-1].style.display = "block"
+            aboutArea.textContent = `${wrongKeyPress} finns inte! försök ${tries}/6`
             console.log("Tries:", tries);
         }
 
@@ -87,18 +112,17 @@ document.addEventListener("keypress", (e) => {
             aboutArea.textContent = "Du vann! spela igen?"
             //visa knapparna
             buttonYes.style.display = "block"
-            //sbuttonNo.style.display = "block"
         }
         // Kontrollera om spelet är förlorat utanför loopen
-        if (tries == 5) {
+        if (tries == 6) {
+            for (const part of hangmanArray) {
+                part.style.display = "block"
+            }
             console.log("Du förlorade... spela igen?")
             aboutArea.textContent = "Du förlorade... spela igen?"
             //visa knapparna
             buttonYes.style.display = "block"
-            //buttonNo.style.display = "block"
-        }
-        
-        
+        }      
     }
 });
 buttonYes.addEventListener("click", () =>{
@@ -106,8 +130,6 @@ buttonYes.addEventListener("click", () =>{
         clearKeyAreas()
         randomWord = getRandomWord();
         createCardAreas();
-
-
         buttonYes.style.display = "none"
         buttonNo.style.display = "none"
 })
