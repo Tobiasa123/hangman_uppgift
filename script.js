@@ -1,5 +1,7 @@
+//variabler och arrays
 let count = 0;
 let tries = 0;
+let isGameOver = false
 let storeKeyPress = [];
 let wrongKeyPress = [];
 let keyboardArea = document.querySelector(".keyboardArea")
@@ -52,6 +54,7 @@ function createCardAreas(){
         part.style.display = "none"
         
     }
+    isGameOver = false
 }
 function clearKeyAreas() {
     // Här kommer vi att skriva koden för att rensa keyAreas.
@@ -77,7 +80,7 @@ createCardAreas();
 document.addEventListener("keypress", (e) => {
 
     // Kontrollera om bokstaven redan har blivit tryckt
-    if (!storeKeyPress.includes(e.key)) {
+    if (!storeKeyPress.includes(e.key) && isGameOver == false) {
         // Lägg till bokstaven i arrayen
         storeKeyPress.push(e.key);
 
@@ -108,6 +111,7 @@ document.addEventListener("keypress", (e) => {
 
         // Kontrollera om spelet är vunnet utanför loopen 
         if (count == keyAreas.length){
+            isGameOver = true
             console.log("Du vann! spela igen?")
             aboutArea.textContent = "Du vann! spela igen?"
             //visa knapparna
@@ -119,6 +123,9 @@ document.addEventListener("keypress", (e) => {
                 part.style.display = "block"
             }
             console.log("Du förlorade... spela igen?")
+
+            isGameOver = true
+
             aboutArea.textContent = "Du förlorade... spela igen?"
             //visa knapparna
             buttonYes.style.display = "block"

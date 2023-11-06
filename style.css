@@ -7,14 +7,14 @@
     flex-direction: column;
     width: 100vw;
     height: 100vh;
-    background-color: black;
+    background-color: rgb(39, 68, 150);
     justify-content: center;
     align-items: center;
+    gap: 1rem;
 
 }
 .fullImage{
-    background-color: rgb(0, 170, 255);
-    border: 0.5px solid white;
+    background-color: rgb(255, 255, 255);
     border-radius: 1rem;
 }
 
@@ -40,6 +40,7 @@
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, 'Arial Narrow', Arial, sans-serif;
     font-size: 5rem;
     color: rgb(69, 69, 69); 
+    box-shadow: 1px 7px 5px 5px rgba(0,0,0,0.75);
 }
 
 .aboutArea{
@@ -52,17 +53,20 @@
     background-color: white;
     font-size: 3rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-top: 1rem;
 }
 .button{
     height: 6rem;
     width: 15rem;
     border-radius: 2rem;
-    border: none;
     background-color: white;
     display: none;
     font-size: 3rem;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-top: 1rem;
+    margin-bottom: 2rem;
+
     /*position: absolute;*/
 }
+.button:hover {
+    transform: scale(1.1);
+    transition: .5s;
+  }
