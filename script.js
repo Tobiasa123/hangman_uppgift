@@ -6,7 +6,7 @@ let storeKeyPress = [];
 let wrongKeyPress = [];
 let keyboardArea = document.querySelector(".keyboardArea")
 let keyAreas = [];
-let wordArray = ["pirat","hatt","mössor","katten","höna","blommor","skepp","sjöfart","hav"]
+let wordArray = ["pirat","hatt","mössor","katten","höna","blommor","skepp","sjöfart","hav"] //lägg till hur många ord som du vill
 let keyArea;
 let randomWord = getRandomWord();
 let aboutArea = document.querySelector(".aboutArea")
@@ -54,7 +54,7 @@ function createCardAreas(){
     isGameOver = false
 }
 function clearKeyAreas() {
-    // Här kommer vi att skriva koden för att rensa keyAreas.
+    //koden för att rensa
     keyAreas.forEach((keyArea) => {
         keyArea.textContent = "";
         keyboardArea.removeChild(keyArea);
@@ -76,18 +76,17 @@ createCardAreas();
 //eventlistener för key
 document.addEventListener("keypress", (e) => {
 
-    // Kontrollera om bokstaven redan har blivit tryckt
     if (!storeKeyPress.includes(e.key) && isGameOver == false) {
-        // Lägg till bokstaven i arrayen
+        //pusha bokstaven till arrayen
         storeKeyPress.push(e.key);
 
         let matchFound = false;
 
-        // Loopa igenom alla keyAreas
+        //loopa igenom alla keyAreas
         for(let i = 0; i < keyAreas.length; i++) {
-            // Om tangenttrycket matchar texten i keyArea, ändra färg
+            //om tangenttrycket matchar texten i keyArea
             if(e.key == keyAreas[i].textContent && count < keyAreas.length) {
-                keyAreas[i].style.color = "black"; // Byt till den färg du vill ha
+                keyAreas[i].style.color = "black";
                 count++;
                 matchFound = true;
 
@@ -96,7 +95,7 @@ document.addEventListener("keypress", (e) => {
             }
         }
 
-          // Om ingen matchning hittades, öka misses
+          //om ingen matchning hittades
         if (!matchFound) {
             tries++;
             //visa kroppsdel av hangedman
@@ -106,7 +105,7 @@ document.addEventListener("keypress", (e) => {
             console.log("Tries:", tries);
         }
 
-        // Kontrollera om spelet är vunnet utanför loopen 
+        //kontrollera om spelet är vunnet
         if (count == keyAreas.length){
             isGameOver = true
             console.log("Du vann! spela igen?")
@@ -114,7 +113,7 @@ document.addEventListener("keypress", (e) => {
             //visa knapparna
             buttonYes.style.display = "block"
         }
-        // Kontrollera om spelet är förlorat utanför loopen
+        //kontrollera om spelet är förlorat
         if (tries == 6) {
             for (const part of hangmanArray) {
                 part.style.display = "block"
@@ -123,8 +122,10 @@ document.addEventListener("keypress", (e) => {
 
             isGameOver = true
 
-            aboutArea.textContent = "Du förlorade... spela igen?"
-            //visa knapparna
+            //säg vad det hela ordet är
+            let wholeWord = keyAreas.map(area => area.textContent).join('');
+            aboutArea.textContent = `Ordet var: "${wholeWord}"! Du förlorade, spela igen?`
+            //visa restart knapp
             buttonYes.style.display = "block"
         }      
     }
