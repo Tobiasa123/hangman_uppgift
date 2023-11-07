@@ -6,7 +6,7 @@ let storeKeyPress = [];
 let wrongKeyPress = [];
 let keyboardArea = document.querySelector(".keyboardArea")
 let keyAreas = [];
-let wordArray = ["pirat","hatt","mössorna","katten","ön"]
+let wordArray = ["pirat","hatt","mössor","katten","höna","blommor","skepp","sjöfart","hav"]
 let keyArea;
 let randomWord = getRandomWord();
 let aboutArea = document.querySelector(".aboutArea")
@@ -22,9 +22,6 @@ let hangmanArms = document.querySelector("#arms")
 let hangmanLegs = document.querySelector("#legs")
 //Array med delar av hangman
 let hangmanArray = [hangmanGround, hangmanScaffold, hangmanHead, hangmanBody, hangmanArms, hangmanLegs]
-//gör elementen none men visa sen när man gissar fel
-
-
 
 //Functions
 function getRandomWord(){   
@@ -105,7 +102,7 @@ document.addEventListener("keypress", (e) => {
             //visa kroppsdel av hangedman
             wrongKeyPress.push(e.key)
             hangmanArray[tries-1].style.display = "block"
-            aboutArea.textContent = `${wrongKeyPress} finns inte! försök ${tries}/6`
+            aboutArea.textContent = `"${wrongKeyPress}" finns inte! försök ${tries}/6`
             console.log("Tries:", tries);
         }
 
